@@ -34,4 +34,4 @@ userSchema.methods.encryptClave = async (clave) => {
   return bcrypt.hash(clave, salt);
 };
 
-module.exports = mongoose.model("Usuario", userSchema);
+module.exports = mongoose.model("Usuarios", userSchema);
