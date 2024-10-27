@@ -28,5 +28,13 @@ router.delete("/usuario/:id", (req, res) => {
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
+// Obtener todos los usuarios
+router.get("/usuario", (req, res) => {
+    userSchema
+        .find()
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error }));
+});
+
 
 module.exports = router;
