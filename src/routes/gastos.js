@@ -26,3 +26,11 @@ router.put("/gastos/:id", (req, res) => {
         })
         .catch((error) => res.status(400).json({ message: error.message }));
 });
+
+// Obtener todos los gastos
+router.get("/gastos", (req, res) => {
+    gastoSchema
+        .find()
+        .then((data) => res.json(data))
+        .catch((error) => res.status(500).json({ message: error.message }));
+});
