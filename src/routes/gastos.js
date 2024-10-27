@@ -34,3 +34,17 @@ router.get("/gastos", (req, res) => {
         .then((data) => res.json(data))
         .catch((error) => res.status(500).json({ message: error.message }));
 });
+
+// Borrar gasto
+router.delete("/gastos/:id", (req, res) => {
+    const { id } = req.params;
+    gastoSchema
+        .deleteOne({ _id: id })
+        .then((data) => {
+            if (data.deletedCount === 0) {
+                return res.status(404).json({ message: "Gasto no encontrado" });
+            }
+            res.json({ message: "Gasto eliminado" });
+        })
+        .catch((error) => res.status(500).json({ message: error.message }));
+});
