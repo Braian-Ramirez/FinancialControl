@@ -17,7 +17,7 @@ app.use(express.json());
 //app.use("/api/ingresos", ingresosRoutes); // rutas para ingresos
 app.use("/api/gastos", gastosRoutes); // rutas para gastos
 //app.use("/api/costos", costosRoutes); // rutas para costos
-app.use("/api/usuarios", usuariosRoutes); // rutas para registro de usuario
+app.use("/api", usuariosRoutes); // rutas para registro de usuario
 
 // Conexión a la base de datos
 mongoose
