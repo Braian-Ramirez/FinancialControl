@@ -1,4 +1,4 @@
-const verifyToken = require('./validate_token');
+//const verifyToken = require('./validate_token');
 const express = require("express");
 const router = express.Router();
 const gastoSchema = require("../models/gastos");
@@ -48,3 +48,4 @@ router.delete("/gastos/:id", (req, res) => {
         })
         .catch((error) => res.status(500).json({ message: error.message }));
 });
+module.exports = router;
