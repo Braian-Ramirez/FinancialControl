@@ -20,5 +20,13 @@ router.put("/usuarios/:id", (req, res) => {
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
+// Borrar usuario
+router.delete("/usuario/:id", (req, res) => {
+    const { id } = req.params;
+    userSchema
+        .deleteOne({ _id: id })
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error }));
+});
 
 module.exports = router;
