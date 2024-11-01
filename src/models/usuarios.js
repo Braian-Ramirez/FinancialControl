@@ -14,11 +14,11 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  contraseña: {
+  clave: {
     type: String,
     required: true,
   },
-  contraseñaConfirmacion: {
+  claveConfirmacion: {
     type: String,
     required: true,
   },
@@ -33,9 +33,9 @@ const userSchema = mongoose.Schema({
 });
 
 // Método para encriptar la contraseña
-//userSchema.methods.encryptClave = async (clave) => {
-  //const salt = await bcrypt.genSalt(10);
-  //return bcrypt.hash(clave, salt);
-//};
+userSchema.methods.encryptClave = async (clave) => {
+  const salt = await bcrypt.genSalt(10);
+  return bcrypt.hash(clave, salt);
+};
 
 module.exports = mongoose.model("Usuarios", userSchema);

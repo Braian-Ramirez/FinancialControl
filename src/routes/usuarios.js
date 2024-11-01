@@ -15,9 +15,9 @@ router.post("/usuarios", (req, res) => {
 // Actualizar datos de usuario
 router.put("/usuarios/:id", (req, res) => {
     const { id } = req.params;
-    const { nombre, cedula, correo, contraseña, contraseñaConfirmacion, telefono, fechaNacimiento } = req.body;
+    const { nombre, cedula, correo, clave, claveConfirmacion, telefono, fechaNacimiento } = req.body;
     userSchema
-        .updateOne({ _id: id }, { $set: { nombre, cedula, correo, contraseña, contraseñaConfirmacion, telefono, fechaNacimiento } })
+        .updateOne({ _id: id }, { $set: { nombre, cedula, correo, clave, claveConfirmacion, telefono, fechaNacimiento } })
         .then((data) => res.json(data))
         .catch((error) => res.status(500).json({ message: error.message }));
 });
