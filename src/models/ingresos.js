@@ -1,4 +1,4 @@
-const mongoose = require("mongoose"); // importando el componente mongoose
+const mongoose = require("mongoose"); // Importando el componente mongoose
 
 const ingresoSchema = mongoose.Schema({
   nombre: {
@@ -19,4 +19,4 @@ const ingresoSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Ingreso", ingresoSchema);
+module.exports = ingresoSchema; // Exportando solo el esquema, no el modelo

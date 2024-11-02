@@ -1,4 +1,4 @@
-const mongoose = require("mongoose"); // importando el componente mongoose
+const mongoose = require("mongoose"); // Importando el componente mongoose
 
 const costoSchema = mongoose.Schema({
   nombre: { 
@@ -17,6 +17,11 @@ const costoSchema = mongoose.Schema({
     type: Date,
     required: true,
   },
+  usuarioId: {
+    type: mongoose.Schema.Types.ObjectId, // Tipo de referencia
+    ref: "Usuarios", // Nombre del modelo que se referencia
+    required: true,
+  },
 });
 
-module.exports = mongoose.model("Costo", costoSchema);
+module.exports = costoSchema; // Exportando solo el esquema
