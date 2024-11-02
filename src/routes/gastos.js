@@ -1,10 +1,10 @@
-//const verifyToken = require('./validate_token');
+const verifyToken = require('./validate_token'); // Importamos el middleware de verificación de token
 const express = require("express");
 const router = express.Router();
 const gastoSchema = require("../models/gastos");
 
-// Crear un nuevo gasto
-router.post("/gastos", (req, res) => {
+// Crear un nuevo gasto (Create) - Protegido con verifyToken
+router.post("/gastos", verifyToken, (req, res) => {
     const gasto = new gastoSchema(req.body);
     gasto
         .save()
@@ -12,8 +12,8 @@ router.post("/gastos", (req, res) => {
         .catch((error) => res.status(400).json({ message: error.message }));
 });
 
- //Actualizar datos de gasto
-router.put("/gastos/:id", (req, res) => {
+// Actualizar datos de gasto (Update) - Protegido con verifyToken
+router.put("/gastos/:id", verifyToken, (req, res) => {
     const { id } = req.params;
     const { nombre, descripcion, monto, fechaPago } = req.body;
     gastoSchema
@@ -27,7 +27,7 @@ router.put("/gastos/:id", (req, res) => {
         .catch((error) => res.status(400).json({ message: error.message }));
 });
 
-// Obtener todos los gastos
+// Obtener todos los gastos (Read - Todos) - Sin protección
 router.get("/gastos", (req, res) => {
     gastoSchema
         .find()
@@ -35,8 +35,8 @@ router.get("/gastos", (req, res) => {
         .catch((error) => res.status(500).json({ message: error.message }));
 });
 
-// Borrar gasto
-router.delete("/gastos/:id", (req, res) => {
+// Borrar gasto (Delete) - Protegido con verifyToken
+router.delete("/gastos/:id", verifyToken, (req, res) => {
     const { id } = req.params;
     gastoSchema
         .deleteOne({ _id: id })
@@ -48,4 +48,5 @@ router.delete("/gastos/:id", (req, res) => {
         })
         .catch((error) => res.status(500).json({ message: error.message }));
 });
+
 module.exports = router;

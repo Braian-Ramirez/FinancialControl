@@ -1,16 +1,18 @@
+const verifyToken = require('./validate_token'); // Importamos el middleware de verificación de token
 const express = require("express");
 const router = express.Router();
 const ingresoSchema = require("../models/ingresos"); // Importamos el esquema de ingresos
 
-// Crear un nuevo ingreso (Create)
-router.post("/ingresos", (req, res) => {
+// Crear un nuevo ingreso (Create) - Protegido con verifyToken
+router.post("/ingresos", verifyToken, (req, res) => {
     const ingreso = new ingresoSchema(req.body);
     ingreso
         .save()
         .then((data) => res.json(data))
         .catch((error) => res.status(400).json({ message: error.message }));
 });
-// Obtener todos los ingresos (Read - Todos)
+
+// Obtener todos los ingresos (Read - Todos) - Sin protección
 router.get("/ingresos", (req, res) => {
     ingresoSchema
         .find()
@@ -18,7 +20,7 @@ router.get("/ingresos", (req, res) => {
         .catch((error) => res.status(500).json({ message: error.message }));
 });
 
-// Obtener un ingreso por ID (Read - Individual)
+// Obtener un ingreso por ID (Read - Individual) - Sin protección
 router.get("/ingresos/:id", (req, res) => {
     const { id } = req.params;
     ingresoSchema
@@ -30,8 +32,8 @@ router.get("/ingresos/:id", (req, res) => {
         .catch((error) => res.status(500).json({ message: error.message }));
 });
 
-// Actualizar un ingreso por ID (Update)
-router.put("/ingresos/:id", (req, res) => {
+// Actualizar un ingreso por ID (Update) - Protegido con verifyToken
+router.put("/ingresos/:id", verifyToken, (req, res) => {
     const { id } = req.params;
     const { nombre, descripcion, monto, fecha } = req.body;
     ingresoSchema
@@ -43,8 +45,8 @@ router.put("/ingresos/:id", (req, res) => {
         .catch((error) => res.status(400).json({ message: error.message }));
 });
 
-// Eliminar un ingreso por ID (Delete)
-router.delete("/ingresos/:id", (req, res) => {
+// Eliminar un ingreso por ID (Delete) - Protegido con verifyToken
+router.delete("/ingresos/:id", verifyToken, (req, res) => {
     const { id } = req.params;
     ingresoSchema
         .deleteOne({ _id: id })
