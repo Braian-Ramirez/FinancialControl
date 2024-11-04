@@ -17,6 +17,11 @@ const gastoSchema = mongoose.Schema({
     type: Date,
     required: true,
   },
+  usuarioId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Usuarios",
+    required: true,
+  },
 });
 
-module.exports = mongoose.model("Gasto", gastoSchema);
+module.exports = gastoSchema; // Exportando solo el esquema, no el modelo

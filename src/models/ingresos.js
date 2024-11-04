@@ -17,6 +17,11 @@ const ingresoSchema = mongoose.Schema({
     type: Date,
     required: true,
   },
+  usuarioId: {
+    type: mongoose.Schema.Types.ObjectId, // Tipo de referencia
+    ref: "Usuarios", // Nombre del modelo que se referencia
+    required: true,
+  },
 });
 
-module.exports = ingresoSchema; // Exportando solo el esquema, no el modelo
+module.exports = ingresoSchema; // Exportando solo el esquema
