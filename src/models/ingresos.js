@@ -24,4 +24,5 @@ const ingresoSchema = mongoose.Schema({
   },
 });
 
-module.exports = ingresoSchema; // Exportando solo el esquema
+module.exports = mongoose.model("Ingresos", ingresoSchema);
+ // Exportando solo el esquema // Exportando solo el esquema

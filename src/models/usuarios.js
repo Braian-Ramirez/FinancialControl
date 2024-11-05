@@ -33,9 +33,9 @@ const userSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  gasto: [gastoSchema], // Usando el esquema directamente
-  costo: [costoSchema], // Usando el esquema directamente
-  ingreso: [ingresoSchema] // Usando el esquema directamente
+  gasto: {type: mongoose.Schema.Types.ObjectId, ref:"Gastos"}, // Usando el esquema directamente
+  costo: {type: mongoose.Schema.Types.ObjectId, ref:"Costos"}, // Usando el esquema directamente
+  ingreso: {type: mongoose.Schema.Types.ObjectId, ref: "Ingresos"} // Usando el esquema directamente
 });
 
 // Método para encriptar la contraseña

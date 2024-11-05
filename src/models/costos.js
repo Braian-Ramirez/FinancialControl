@@ -1,6 +1,6 @@
 const mongoose = require("mongoose"); // Importando el componente mongoose
 
-const costoSchema = mongoose.Schema({
+const costoSchema = new mongoose.Schema({
   nombre: { 
     type: String,
     required: true,
@@ -24,4 +24,5 @@ const costoSchema = mongoose.Schema({
   },
 });
 
-module.exports = costoSchema; // Exportando solo el esquema
+module.exports = mongoose.model("Costos", costoSchema);
+ // Exportando solo el esquema
