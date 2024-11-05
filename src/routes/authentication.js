@@ -7,13 +7,13 @@ const verifyToken = require("./validate_token");
 
 //Revisar esta forma de autenticarse https://www.digitalocean.com/community/tutorials/nodejs-jwt-expressjs
 router.post("/signup", async (req, res) => {
-    const { nombre, cedula, correo, clave, confirmacionClave, telefono, fechaNacimiento} = req.body;
+    const { nombre, cedula, correo, clave, claveConfirmacion, telefono, fechaNacimiento} = req.body;
     const usuarios = new userSchema({
       nombre: nombre,
       cedula: cedula,
       correo: correo,
       clave: clave,
-      confirmacionClave: confirmacionClave,
+      claveConfirmacion: claveConfirmacion,
       telefono: telefono,
       fechaNacimiento: fechaNacimiento
     });

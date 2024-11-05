@@ -2,6 +2,7 @@ const parser = require("body-parser");
 const express = require('express');
 const app = express();
 const port = 4000;
+const authRoutes = require("./routes/authentication");
 const ingresosRoutes = require("./routes/ingresos");
 const gastosRoutes = require("./routes/gastos");
 const costosRoutes = require("./routes/costos");
@@ -18,7 +19,7 @@ app.use("/api", ingresosRoutes); // rutas para ingresos
 app.use("/api", gastosRoutes); // rutas para gastos
 app.use("/api", costosRoutes); // rutas para costos
 app.use("/api", usuariosRoutes); // rutas para registro de usuario
-
+app.use("/api",authRoutes); // rutas se registro y inicio sesión 
 // Conexión a la base de datos
 mongoose
     .connect(process.env.MONGODB_URI)
