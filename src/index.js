@@ -14,7 +14,7 @@ app.use(parser.json());
 app.use(express.json());
 
 // Gestión de rutas usando middleware
-app.use("/api/ingresos", ingresosRoutes); // rutas para ingresos
+app.use("/api", ingresosRoutes); // rutas para ingresos
 app.use("/api", gastosRoutes); // rutas para gastos
 app.use("/api", costosRoutes); // rutas para costos
 app.use("/api", usuariosRoutes); // rutas para registro de usuario
