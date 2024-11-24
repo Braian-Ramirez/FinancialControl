@@ -35,9 +35,9 @@ router.get("/usuarios/:id", (req, res) => {
 // Actualizar un usuario por ID (Update) - Protegido con verifyToken
 router.put("/usuarios/:id", verifyToken, (req, res) => {
     const { id } = req.params;
-    const { nombre, email, rol } = req.body; // Ejemplo de campos
+    const {  nombre, cedula, correo, clave, claveConfirmacion, telefono, fechaNacimiento} = req.body; // Ejemplo de campos
     usuarioSchema
-        .updateOne({ _id: id }, { $set: { nombre, email, rol } })
+        .updateOne({ _id: id }, { $set: {  nombre, cedula, correo, clave, claveConfirmacion, telefono, fechaNacimiento } })
         .then((data) => {
             if (data.modifiedCount === 0) return res.status(404).json({ message: "Usuario no actualizado o no encontrado" });
             res.json(data);

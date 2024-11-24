@@ -66,7 +66,7 @@ router.post("/login", async (req, res) => {
       accessToken: accessToken,
       expiresIn: expiresIn,
     });*/
-    res.json({accessToken});
+    res.json({accessToken, id:usuarios.id});
 }
 });
 module.exports = router;
